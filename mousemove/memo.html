@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!--http://www.iutopi.com/-->
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        html,body{
+            height:100%;
+        }
+        .box{
+            position:fixed;
+            z-index:-1;
+            width:100%;
+            height:100%;
+            background-image: url(http://dint.img18.kr/smartpc/custom_img/main_1.jpg);
+            background-repeat: no-repeat;
+            transition:.2s;
+            transform-origin:center;
+        }
+        .sub1{width:200px;height:200px; border:1px #F00 solid; position:absolute; left:50%; margin-left:-100px;  top:50%; background:#F00;z-index:1; margin-top:-100px;}
+        .sub2{width:300px;height:300px; border:1px #F00 solid; position:absolute; left:50%; margin-left:-150px; top:50%; background:#00F; z-index:0; margin-top:-150px;}
+        .contents{height:2000px; background-color: #fff; margin-top:500px;}
+
+    </style>
+
+    <script>
+        $(function(){
+
+            $('body').mousemove(function(e){
+
+                var x = e.pageX - $(this).width()/2
+                var y = e.pageY - $(this).height()/2
+
+
+                $('.x').text(x)
+                $('.y').text(y)
+
+
+                $(".box").css({
+                    'transform':'translate('+ -x/5 +'px,'+ -y/5 +'px) scale(2,2)'
+                })
+
+                $(".sub1").css({
+                    'transform':'translate('+ -x/8 +'px,'+ -y/8 +'px)'
+                })
+                $(".sub2").css({
+                    'transform':'translate('+ -x/4 +'px,'+ -y/4 +'px)'
+                })
+
+            })
+
+        })
+
+    </script>
+
+</head>
+<body>
+    X: <span class="x"></span> /
+    Y: <span class="y"></span>
+    <div class="box">
+
+
+    </div>
+     <div class="sub1"></div>
+     <div class="sub2"></div>
+
+     <div class="contents">
+
+     </div>
+</body>
+</html>

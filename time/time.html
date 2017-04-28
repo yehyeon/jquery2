@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+
+    body{
+        background: #000;
+    }
+
+    div{
+        border:1px #F00 solid;
+        display:inline-block;
+    }
+        div>span{border:1px #F00 solid;
+            width:41px;
+            height:100px;
+            display:block;
+            float:left;
+            background-image:url(http://dept.galleria.co.kr/web/img/main/txt-num.png)
+        }
+
+
+    </style>
+    <script>
+    $(function(){
+        // https://www.w3schools.com/js/js_date_methods.asp
+
+
+
+
+        var weekArr=['일요일','월요일','화요일','수요일','목요일','금요일','토요일']
+        var time  = new Date();
+        var week = time.getDay();
+        var Hours = time.getHours();
+
+        var HoresArr = [];
+        var minArr = [];
+        var secArr = [];
+
+        //ex.1 : 12시 기반
+        /*if(Hours >12){
+           Hours - 12
+        }*/
+        var Min = time.getMinutes()
+        var sec =time.getSeconds();
+
+        console.log("사용자가 접속한 시간:"+Hours+":"+Min+":"+sec);
+
+        setInterval(function(){
+             time  = new Date();
+             Hours = time.getHours();
+             Min = time.getMinutes();
+             sec =time.getSeconds();
+
+
+             if(Hours > 8 && Hours < 17){
+                 $('body').css('background','blue')
+             }else{
+                 $('body').css('background','black')
+             }
+
+
+            // $('body').text("현재시간:"+Hours+":"+Min+":"+sec)
+
+             arrOpti(Hours,HoresArr,$('.hh'))
+             arrOpti(Min,minArr,$('.mm'))
+             arrOpti(sec,secArr,$('.ss'))
+
+
+
+        },1000)
+
+        function arrOpti(time,arr,select){
+            arr = [];
+
+            if(time < 10){
+                time = "0"+time
+            }
+
+            for(i=0;i<String(time).length;i++){
+                var num = String(time).substring(i,i+1);
+                arr.push(num);
+
+                select.children('span').eq(i).animate({
+                    'background-position-y':"-"+Number(arr[i])*100+"px"
+                })
+
+            }
+
+
+
+        }
+     })
+
+    </script>
+</head>
+<body>
+    <div class="hh">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="mm">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="ss">
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>

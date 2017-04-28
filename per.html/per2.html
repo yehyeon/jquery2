@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        html,body{height: 100%;}
+        *{margin: 0;padding: 0;}
+        div{height: 100%;}
+        div section{
+            height: 100%;
+            border: 1px #ccc solid;
+            background-size: cover;
+            background-position: cover;
+            width:100%;
+            left:0;
+        }
+       div.element{
+            height: 100px;
+            width: 100px;
+            background-color: #eb7481;
+            border-radius: 45%;
+            position: absolute;
+        }
+				div section:nth-child(1){background-image: url(images/Desert.jpg);}
+				div section:nth-child(2){background-image: url(images/Chrysanthemum.jpg);}
+				/*background-attachment: fixed;*/   /*넣으면 뒤 배경이 고정됨*/
+				div section:nth-child(3){background-image: url(images/Jellyfish.jpg);}
+				div section:nth-child(4){background-image: url(images/Koala.jpg);}
+				div section:nth-child(5){background-image: url(images/Tulips.jpg);}
+
+      section:nth-child(1) div.element{margin: 100px 100px;}
+        section:nth-child(2) div.element{margin: 200px 200px;}
+        section:nth-child(3) div.element{margin: 400px 300px;}
+        section:nth-child(4) div.element{margin: 400px 400px;}
+        section:nth-child(5) div.element{margin: 500px 500px;}
+    </style>
+    <script>
+        $(function(){
+            var spot = [];
+            var h =0;
+
+          var ttspot = [];
+            var tspot = $('div.element').height()
+            $('div.element').each(function(i){
+                var offtop =$(this).offset().top;
+                ttspot.push(offtop)
+                $(this).css({
+                    'top':ttspot[i]
+                })
+            })
+
+            $('div section').each(function(i){
+                var offtop = $(this).offset().top;
+                spot.push(offtop)
+                $(this).css({
+                    'top':spot[i]
+                })
+                h += $(this).height();
+            })
+            $('div section').css('position','fixed')
+            $('body>div').height(h)
+
+            $(window).scroll(function(){
+                var sct= $(this).scrollTop()
+
+                $('div section').each(function(i){
+                    var tt = -1*sct + spot[i];
+                    if(sct > spot[i]) tt *= 0.1
+                    $(this).css('top',tt)
+                })
+               var ttt = tspot + sct*- 0.3;
+                $('div.element').css('top',ttt)
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <div>
+        <section>
+            <div class="element"></div>
+        </section>
+        <section>
+            <div class="element"></div>
+        </section>
+        <section>
+            <div class="element"></div>
+        </section>
+        <section>
+            <div class="element"></div>
+        </section>
+        <section>
+            <div class="element"></div>
+        </section>
+    </div>
+</body>
+</html>

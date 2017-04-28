@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        .box{width:800px; height:500px; border:1px #F00 solid;
+            background-image: url(http://dint.img18.kr/smartpc/custom_img/main_1.jpg);
+            background-repeat: no-repeat;
+            -webkit-background-size: auto 100%;
+            background-size: auto 100%;
+            background-position: 0 0;
+        }
+
+    </style>
+
+		<script>
+        $(function(){
+
+            $('.box').mousemove(function(e){
+
+                var x = e.pageX - $(this).width()/2
+                var y = e.pageY - $(this).height()/2
+
+                $('.x').text(x)
+                $('.y').text(y)
+
+                $(this).css({
+                    'background-position-y':-e.pageY,
+                    'background-position-x':-e.pageX,
+                    'background-size':'auto auto'
+                })
+
+            })
+
+        })
+
+    </script>
+
+</head>
+<body>
+    X: <span class="x"></span> /
+    Y: <span class="y"></span>
+    <div class="box"></div>
+
+
+
+</body>
+</html>
