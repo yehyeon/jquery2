@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+
+    </script>
+
+    <style>
+        *{margin: 0;padding: 0;}
+        ul{list-style:none; text-align:center;}
+        h1{opacity:0;}
+        a{color:#FFF;}
+        li{display:inline-block;}
+        li.on a{color:#F00;}
+        header{height:80px; width:100%; left:0; top:0; background-color:rgba(0,0,0,.5); line-height:80px; position:fixed; left:0; top:0;}
+        section{
+            text-align:center;
+            height:1000px;
+            border:1px #F00 solid;
+            padding-top:80px;
+            box-sizing:border-box;
+        }
+    </style>
+
+    <script>
+
+    /*
+    jQeury()()
+
+    var jQeury = function(){
+
+        return function(){
+
+        }
+    }
+    */
+
+    (function($){
+        //jQuery의 $ 를 사용할수없는경우
+
+        $.aniPage = function(event,type){
+
+            var access = event.originalEvent.wheelDelta || event.originalEvent.detail;
+
+            if(access > 0){
+                $('body,html').animate({
+                    "scrollTop":$(window).scrollTop() - 1000
+                },1000,function(){
+                    //컴플릿
+                    $.aniOk = 0;
+                })
+
+            }else if(access < 0){
+                $('body,html').animate({
+                    "scrollTop":$(window).scrollTop() + 1000
+                },1000,function(){
+                    //컴플릿
+                    $.aniOk = 0;
+                })
+
+            }
+
+        }
+
+    })(jQuery)
+
+
+
+
+
+
+
+    $(window).load(function(){
+        //문서상의 오브젝트를 모두 불러오기가 완료되면 그이후에 스크립트 실행
+
+    })
+
+
+
+
+    $(function(){
+        //사용자가 문서에 들어오자마자 즉시 스크립트를 실행
+        $.aniOk = 0;
+        $(window).scrollTop(0);
+    })
+
+
+
+
+    //이벤트
+    $(window).on('mousewheel DOMMouseScroll',function(e){
+         e.preventDefault();
+
+         if($.aniOk == 0){
+             $.aniPage(e,e.type);
+             $.aniOk = 1;
+         }
+    })
+
+
+
+
+
+
+
+
+    </script>
+
+
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li class="on"><a href="">Menu1</a></li>
+                <li><a href="">Menu2</a></li>
+                <li><a href="">Menu3</a></li>
+                <li><a href="">Menu4</a></li>
+                <li><a href="">Menu5</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="wrap">
+        <section>
+            <h1>title1</h1>
+        </section>
+        <section>
+            <h1>title2</h1>
+        </section>
+        <section>
+            <h1>title3</h1>
+        </section>
+        <section>
+            <h1>title4</h1>
+        </section>
+        <section>
+            <h1>title5</h1>
+        </section>
+    </div>
+
+
+</body>
+</html>
