@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Document</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+		<script>
+		$(function(){
+
+
+		var agent = navigator.userAgent.toLowerCase();
+		if (agent.indexOf("chrome") != -1) {   //크롬일 경우,  indexof는 중의 순서
+		$('body').html("크롬 접속");
+		}
+		if (agent.indexOf("msie") != -1) {   //익스플로러 경우
+		$('body').html("인터넷익스플로러 접속.");
+		}
+
+
+
+		})
+
+
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>
